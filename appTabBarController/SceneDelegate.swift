@@ -11,35 +11,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        window = UIWindow(windowScene: windowScene)
-        
-        // Crear el TabBarController
-        let tabBarController = UITabBarController()
-        
-        // Vista 1: Inicio
-        let vistaInicioVC = vistaInicio()
-        vistaInicioVC.tabBarItem = UITabBarItem(title: "Inicio", image: UIImage(systemName: "house.fill"), tag: 0)
-        
-        // Vista 2: Conversor
-        let conversorVC = ConversorNumericoViewController()
-        conversorVC.tabBarItem = UITabBarItem(title: "Conversor", image: UIImage(systemName: "number.circle.fill"), tag: 1)
-        
-        // Vista 3: Otra vista (añade las que tenías en el Storyboard)
-        let otraVistaVC = ViewController() // O el nombre de tu vista
-        otraVistaVC.tabBarItem = UITabBarItem(title: "Otra", image: UIImage(systemName: "star.fill"), tag: 2)
-        
-        // Añadir TODAS las vistas al tab bar
-        tabBarController.viewControllers = [vistaInicioVC, conversorVC, otraVistaVC]
-        
-        window?.rootViewController = tabBarController
-        window?.makeKeyAndVisible()
+        guard let _ = (scene as? UIWindowScene) else { return }
+        // Comentar o eliminar todo el código que crea el TabBarController programáticamente
+        // El Storyboard se cargará automáticamente
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
