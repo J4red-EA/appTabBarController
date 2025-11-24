@@ -12,9 +12,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
-        // Comentar o eliminar todo el código que crea el TabBarController programáticamente
-        // El Storyboard se cargará automáticamente
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(windowScene: windowScene)
+        
+        // Cargar el TabBarController del Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // El TabBarController debe ser el Initial View Controller en el Storyboard
+        // O darle un Storyboard ID, por ejemplo: "MainTabBarController"
+        let tabBarController = storyboard.instantiateInitialViewController() as! UITabBarController
+        
+        // Crear el Conversor
+        let conversorVC = ConversorNumericoViewController()
+        conversorVC.tabBarItem = UITabBarItem(title: "Conversor", image: UIImage(systemName: "number.circle.fill"), tag: 1)
+        
+        // Añadir el conversor a las vistas existentes del TabBar
+        var viewControllers = tabBarController.viewControllers ?? []
+        viewControllers.append(conversorVC)
+        tabBarController.viewControllers = viewControllers
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
