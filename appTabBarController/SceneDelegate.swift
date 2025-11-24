@@ -16,23 +16,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
+        // Cargar el Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         // Crear el TabBarController
         let tabBarController = UITabBarController()
         
-        // Vista 1: Inicio
+        // Vista 1: Inicio (desde Storyboard si existe, sino programática)
         let vistaInicioVC = vistaInicio()
         vistaInicioVC.tabBarItem = UITabBarItem(title: "Inicio", image: UIImage(systemName: "house.fill"), tag: 0)
         
-        // Vista 2: Conversor
+        // Vista 2: Conversor Numérico
         let conversorVC = ConversorNumericoViewController()
         conversorVC.tabBarItem = UITabBarItem(title: "Conversor", image: UIImage(systemName: "number.circle.fill"), tag: 1)
         
-        // Vista 3: Otra vista (añade las que tenías en el Storyboard)
-        let otraVistaVC = ViewController() // O el nombre de tu vista
-        otraVistaVC.tabBarItem = UITabBarItem(title: "Otra", image: UIImage(systemName: "star.fill"), tag: 2)
+        // Vista 3: Gráficos 2D
+        let graficos2DVC = Graficos2DViewController()
+        graficos2DVC.tabBarItem = UITabBarItem(title: "Gráficos 2D", image: UIImage(systemName: "paintbrush.fill"), tag: 2)
         
         // Añadir TODAS las vistas al tab bar
-        tabBarController.viewControllers = [vistaInicioVC, conversorVC, otraVistaVC]
+        tabBarController.viewControllers = [vistaInicioVC, conversorVC, graficos2DVC]
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
